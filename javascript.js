@@ -143,3 +143,62 @@ function renderJobs() {
     updateDisplayCount();
 }
 
+
+
+function filterJobsByTab() {
+    if (currentTab === 'all') {
+        return jobs;
+    }
+    return jobs.filter(job => job.status === currentTab);
+}
+
+
+
+// Create Job Card
+
+function createJobCard(job) {
+    const card = document.createElement('div');
+    card.className = 'bg-white border border-gray-200 rounded-lg p-5 hover:shadow-lg hover:-translate-y-0.5 transition flex flex-col';
+    card.dataset.jobId = job.id;
+
+    const statusClass = job.status !== 'all' ? job.status : '';
+    let statusDisplay = '';
+    
+    if (job.status === 'interview') {
+        statusDisplay = '<span class="inline-block px-3 py-1 bg-green-100 text-green-600 text-xs font-semibold rounded mb-3 uppercase">Interview</span>';
+
+    } else if (job.status === 'rejected') {
+        statusDisplay = '<span class="inline-block px-3 py-1 bg-red-100 text-red-600 text-xs font-semibold rounded mb-3 uppercase">Rejected</span>';
+    }
+
+    const isInterviewSelected = job.status === 'interview';
+    const isRejectedSelected = job.status === 'rejected';
+
+    card.innerHTML = `
+        <div class="flex justify-between items-start mb-2">
+            <h3 class="text-base font-bold text-blue-900">${job.companyName}</h3>
+            <button class="delete-btn text-gray-400 hover:text-red-600 transition" onclick="deleteJob(${job.id})">
+                <img src="trash.png" alt="Delete" class="w-5 h-5">
+            </button>
+        </div>
+        <p class="text-sm text-gray-600 mb-2">${job.position}</p>
+        <div class="text-xs text-gray-500 mb-3">
+            <p>${job.location} • ${job.type} • ${job.salary}</p>
+        </div>
+        ${statusDisplay}
+        <p class="text-sm text-gray-700 mb-4 flex-grow">${job.description}</p>
+        <div class="flex gap-2">
+            <button class="action-btn px-4 py-2 border-2 border-green-500 text-green-600 rounded text-xs font-semibold uppercase hover:bg-green-500 hover:text-white transition min-w-max ${isInterviewSelected ? 'bg-green-500 text-white' : ''}" 
+                    onclick="updateJobStatus(${job.id}, 'interview')">
+                Interview
+            </button>
+            <button class="action-btn px-4 py-2 border-2 border-red-600 text-red-600 rounded text-xs font-semibold uppercase hover:bg-red-600 hover:text-white transition min-w-max ${isRejectedSelected ? 'bg-red-600 text-white' : ''}" 
+                    onclick="updateJobStatus(${job.id}, 'rejected')">
+                Rejected
+            </button>
+        </div>
+    `;
+
+    return card;
+}
+
