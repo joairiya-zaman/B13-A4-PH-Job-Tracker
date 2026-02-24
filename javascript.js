@@ -106,3 +106,40 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+// tab switching
+function setupTabListeners() {
+
+    tabButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            tabButtons.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentTab = btn.dataset.tab
+            renderJobs();
+        });
+    });
+}
+
+
+function renderJobs() {
+
+    const filteredJobs = filterJobsByTab();
+    jobsContainer.innerHTML = '';
+    const emptyStateEl = document.getElementById('emptyState');
+
+
+    if (filteredJobs.length === 0) {
+        jobsContainer.style.display = 'none';
+        emptyStateEl.classList.remove('hidden');
+    } 
+    
+    
+    else {
+        jobsContainer.style.display = 'block';
+        emptyStateEl.classList.add('hidden');
+        filteredJobs.forEach(job => {
+            jobsContainer.appendChild(createJobCard(job));
+        });
+    }
+    updateDisplayCount();
+}
+
