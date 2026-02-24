@@ -202,3 +202,44 @@ function createJobCard(job) {
     return card;
 }
 
+
+function updateJobStatus(jobId, newStatus) {
+    const job = jobs.find(j => j.id === jobId);
+    if (job) {
+      
+        if (job.status === newStatus) {
+            job.status = newStatus;
+
+        } else {
+            job.status = newStatus;
+        }
+    }
+    updateCounts();
+    renderJobs();
+}
+
+
+
+function deleteJob(jobId) {
+    jobs = jobs.filter(job => job.id !== jobId);
+    updateCounts();
+    renderJobs();
+}
+
+// Update Counts
+function updateCounts() {
+    const totalJobs = jobs.length;
+    const interviewJobs = jobs.filter(j => j.status === 'interview').length;
+    const rejectedJobs = jobs.filter(j => j.status === 'rejected').length;
+
+    totalCountEl.textContent = totalJobs;
+    interviewCountEl.textContent = interviewJobs;
+    rejectedCountEl.textContent = rejectedJobs;
+}
+
+
+function updateDisplayCount() {
+    const filteredJobs = filterJobsByTab();
+    displayCountEl.textContent = filteredJobs.length;
+}
+
