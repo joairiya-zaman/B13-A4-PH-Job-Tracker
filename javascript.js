@@ -83,3 +83,26 @@ const jobsData = [
     }
 ];
 
+
+
+
+let currentTab = 'all';
+let jobs = [...jobsData];
+
+// dom elements
+const jobsContainer = document.getElementById('jobsContainer');
+const emptyState = document.getElementById('emptyState');
+const tabButtons = document.querySelectorAll('.tab-btn');
+const totalCountEl = document.getElementById('totalCount');
+const interviewCountEl = document.getElementById('interviewCount');
+const rejectedCountEl = document.getElementById('rejectedCount');
+const displayCountEl = document.getElementById('displayCount');
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    renderJobs();
+    setupTabListeners();
+    updateCounts();
+});
+
+
