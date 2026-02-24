@@ -30,6 +30,44 @@
             </div>
         </section>
 
+                <!-- Available jobs section -->
+
+
+        <section class="bg-white rounded-lg shadow p-8">
+            <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4 pb-4 border-b-2 border-gray-300 mb-6">
+                <h2 class="text-2xl font-bold text-blue-800">Jobs Available</h2>
+
+                <p class="text-gray-600"><span id="displayCount">8</span> total jobs</p>
+            </div>
+
+          
+            <div class="flex gap-1 mb-6 border-b border-gray-200 pb-0">
+
+                <button class="tab-btn active px-6 py-3 text-sm font-semibold text-gray-700 border-b-4 border-blue-600 -mb-px hover:bg-gray-100" data-tab="all">All Jobs</button>
+
+                <button class="tab-btn px-6 py-3 text-sm font-semibold text-gray-600 border-b-4 border-transparent hover:bg-gray-100" data-tab="interview">Interview Calls</button>
+
+                <button class="tab-btn px-6 py-3 text-sm font-semibold text-gray-600 border-b-4 border-transparent hover:bg-gray-100" data-tab="rejected">Rejected</button>
+            </div>
+
+          
+
+            <div class="space-y-4" id="jobsContainer">
+                <!-- Job cards will be inserted here -->
+            </div>
+
+            
+
+            <!-- Empty state -->
+            <div class="empty-state hidden text-center py-16" id="emptyState">
+                <img src="jobs.png" alt="No jobs" class="w-24 h-24 mx-auto mb-6 opacity-50">
+                <h3 class="text-xl font-bold text-gray-700 mb-2">No jobs here</h3>
+                <p class="text-gray-500">Come back later to see more job openings</p>
+            </div>
+        </section>
+    </div>
+
+
     <script src="javascript.js"></script>
 </body>
 </html>
