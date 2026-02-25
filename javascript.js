@@ -178,7 +178,7 @@ function createJobCard(job) {
         <div class="flex justify-between items-start mb-2">
             <h3 class="text-base font-bold text-blue-900">${job.companyName}</h3>
             <button class="delete-btn text-gray-400 hover:text-red-600 transition" onclick="deleteJob(${job.id})">
-                <img src="./trash.png" alt="Delete" class="w-5 h-5">
+                <img src="./images/trash.png" alt="Delete" class="w-5 h-5">
             </button>
         </div>
         <p class="text-sm text-gray-600 mb-2">${job.position}</p>
